@@ -9,5 +9,13 @@
 #import "News.h"
 
 @implementation News
-
+-(instancetype)init{
+    if (self = [super init]){
+        _titleNews = @"title";
+        _descNews = @"description news";
+        _imageNews = @"url for news image";
+    
+    }
+    return self;
+}
 @end

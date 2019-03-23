@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface News : NSObject
-
+@property (nonatomic, strong) NSString* imageNews;
+@property (nonatomic, strong) NSString* titleNews;
+@property (nonatomic, strong) NSString* descNews;
 @end
 
 NS_ASSUME_NONNULL_END

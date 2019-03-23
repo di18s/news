@@ -7,8 +7,14 @@
 //
 
 #import "NewsDescriptionViewController.h"
+#import "NewsTitleViewController.h"
+#import "News.h"
+
 
 @interface NewsDescriptionViewController ()
+@property (nonatomic, strong) UILabel* title_News;
+@property (nonatomic, strong) UIImageView* image_News;
+@property (nonatomic, strong) UITextView* desc_news;
 
 @end
 
@@ -16,9 +22,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self addUI];
 }
 
+-(void)addUI{
+    _title_News = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
+    _image_News = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 300)];
+    _desc_news = [[UITextView alloc] initWithFrame:CGRectMake(0, 400, self.view.bounds.size.width, 1000)];
+}
 /*
 #pragma mark - Navigation
 
