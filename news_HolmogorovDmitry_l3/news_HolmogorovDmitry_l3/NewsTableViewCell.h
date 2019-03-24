@@ -1,5 +1,5 @@
 //
-//  NewsCollectionViewCell.h
+//  NewsTableViewCell.h
 //  news_HolmogorovDmitry_l3
 //
 //  Created by Дмитрий on 23/03/2019.
@@ -10,9 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NewsCollectionViewCell : UICollectionViewCell
-@property (nonatomic, strong) UIImageView* imageNews;
-@property (nonatomic, strong) UILabel* titleNews;
+@interface NewsTableViewCell : UITableViewCell
+
 @end
 
 NS_ASSUME_NONNULL_END
