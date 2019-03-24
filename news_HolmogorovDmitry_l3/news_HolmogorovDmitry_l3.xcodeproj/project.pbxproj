@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AFA89DB943A92735CA126A9 /* libPods-news_HolmogorovDmitry_l3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B2A66BCE07D7307C5F3817F /* libPods-news_HolmogorovDmitry_l3.a */; };
 		E858336B22466B0400300743 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E858336A22466B0400300743 /* AppDelegate.m */; };
 		E858336E22466B0500300743 /* NewsTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E858336D22466B0500300743 /* NewsTitleViewController.m */; };
 		E858337322466B0700300743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E858337222466B0700300743 /* Assets.xcassets */; };
@@ -14,10 +15,13 @@
 		E858337922466B0700300743 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E858337822466B0700300743 /* main.m */; };
 		E858338122466CA500300743 /* NewsDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E858338022466CA500300743 /* NewsDescriptionViewController.m */; };
 		E858338422466D6300300743 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = E858338322466D6300300743 /* News.m */; };
-		E85833872246724500300743 /* NewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E85833862246724500300743 /* NewsCollectionViewCell.m */; };
+		E868CE9822469CAD00C0EB58 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E868CE9722469CAD00C0EB58 /* NewsTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1404E3A0D1FBC2946C16B857 /* Pods-news_HolmogorovDmitry_l3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news_HolmogorovDmitry_l3.debug.xcconfig"; path = "Target Support Files/Pods-news_HolmogorovDmitry_l3/Pods-news_HolmogorovDmitry_l3.debug.xcconfig"; sourceTree = "<group>"; };
+		1B2A66BCE07D7307C5F3817F /* libPods-news_HolmogorovDmitry_l3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-news_HolmogorovDmitry_l3.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E810456FD907BA3FBF668B54 /* Pods-news_HolmogorovDmitry_l3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news_HolmogorovDmitry_l3.release.xcconfig"; path = "Target Support Files/Pods-news_HolmogorovDmitry_l3/Pods-news_HolmogorovDmitry_l3.release.xcconfig"; sourceTree = "<group>"; };
 		E858336622466B0400300743 /* news_HolmogorovDmitry_l3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = news_HolmogorovDmitry_l3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E858336922466B0400300743 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E858336A22466B0400300743 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -31,8 +35,8 @@
 		E858338022466CA500300743 /* NewsDescriptionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsDescriptionViewController.m; sourceTree = "<group>"; };
 		E858338222466D6300300743 /* News.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		E858338322466D6300300743 /* News.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
-		E85833852246724500300743 /* NewsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsCollectionViewCell.h; sourceTree = "<group>"; };
-		E85833862246724500300743 /* NewsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsCollectionViewCell.m; sourceTree = "<group>"; };
+		E868CE9622469CAD00C0EB58 /* NewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
+		E868CE9722469CAD00C0EB58 /* NewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,17 +44,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AFA89DB943A92735CA126A9 /* libPods-news_HolmogorovDmitry_l3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A29E8B77D14C9EDD9CA7A04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B2A66BCE07D7307C5F3817F /* libPods-news_HolmogorovDmitry_l3.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8DA9B05B9CA67662B16D946 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1404E3A0D1FBC2946C16B857 /* Pods-news_HolmogorovDmitry_l3.debug.xcconfig */,
+				E810456FD907BA3FBF668B54 /* Pods-news_HolmogorovDmitry_l3.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E858335D22466B0400300743 = {
 			isa = PBXGroup;
 			children = (
 				E858336822466B0400300743 /* news_HolmogorovDmitry_l3 */,
 				E858336722466B0400300743 /* Products */,
+				B8DA9B05B9CA67662B16D946 /* Pods */,
+				2A29E8B77D14C9EDD9CA7A04 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,8 +102,8 @@
 				E858338022466CA500300743 /* NewsDescriptionViewController.m */,
 				E858338222466D6300300743 /* News.h */,
 				E858338322466D6300300743 /* News.m */,
-				E85833852246724500300743 /* NewsCollectionViewCell.h */,
-				E85833862246724500300743 /* NewsCollectionViewCell.m */,
+				E868CE9622469CAD00C0EB58 /* NewsTableViewCell.h */,
+				E868CE9722469CAD00C0EB58 /* NewsTableViewCell.m */,
 			);
 			path = news_HolmogorovDmitry_l3;
 			sourceTree = "<group>";
@@ -90,6 +115,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E858337C22466B0700300743 /* Build configuration list for PBXNativeTarget "news_HolmogorovDmitry_l3" */;
 			buildPhases = (
+				DF7253F6D6BB1C71FE845F93 /* [CP] Check Pods Manifest.lock */,
 				E858336222466B0400300743 /* Sources */,
 				E858336322466B0400300743 /* Frameworks */,
 				E858336422466B0400300743 /* Resources */,
@@ -147,6 +173,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DF7253F6D6BB1C71FE845F93 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-news_HolmogorovDmitry_l3-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E858336222466B0400300743 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -155,9 +206,9 @@
 				E858338422466D6300300743 /* News.m in Sources */,
 				E858336E22466B0500300743 /* NewsTitleViewController.m in Sources */,
 				E858337922466B0700300743 /* main.m in Sources */,
-				E85833872246724500300743 /* NewsCollectionViewCell.m in Sources */,
 				E858338122466CA500300743 /* NewsDescriptionViewController.m in Sources */,
 				E858336B22466B0400300743 /* AppDelegate.m in Sources */,
+				E868CE9822469CAD00C0EB58 /* NewsTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +340,7 @@
 		};
 		E858337D22466B0700300743 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1404E3A0D1FBC2946C16B857 /* Pods-news_HolmogorovDmitry_l3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -306,6 +358,7 @@
 		};
 		E858337E22466B0700300743 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E810456FD907BA3FBF668B54 /* Pods-news_HolmogorovDmitry_l3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

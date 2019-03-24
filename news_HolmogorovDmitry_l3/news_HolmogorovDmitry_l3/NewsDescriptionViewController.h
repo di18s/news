@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
 @interface NewsDescriptionViewController : UIViewController
-
+@property (nonatomic, strong) NSString* title_News_ST;
+@property (nonatomic, strong) NSString* image_News_ST;
+@property (nonatomic, strong) NSString* desc_news_ST;
 @end
 
-NS_ASSUME_NONNULL_END

@@ -8,12 +8,14 @@
 
 #import "NewsTitleViewController.h"
 #import "NewsDescriptionViewController.h"
-#import "NewsCollectionViewCell.h"
 #import "News.h"
+#import "NewsTableViewCell.h"
+#import <YYWebImage/YYWebImage.h>
+#define NewsImage(iata) [NSURL URLWithString:[NSString stringWithFormat:@"https://pics.avs.io/200/200/%@.png", iata]];
 
-@interface NewsTitleViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-@property (nonatomic, strong) UICollectionView* collectionView;
-@property (nonatomic, strong) NSArray* newsArray;
+@interface NewsTitleViewController () <UITableViewDataSource, UITableViewDelegate>
+@property (nonatomic, strong) NSMutableArray* newsArray;
+@property (nonatomic, strong) UITableView* tableView;
 @end
 
 @implementation NewsTitleViewController
@@ -22,43 +24,65 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:UIColor.magentaColor];
     
-    UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    _tableView = [[UITableView alloc] initWithFrame: self.view.bounds style: UITableViewStylePlain];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.rowHeight = 150;
+    [_tableView setBackgroundColor:UIColor.whiteColor];
+    [self.view addSubview:_tableView];
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
-    [self.collectionView registerClass:[NewsCollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-    [self.collectionView setBackgroundColor:UIColor.whiteColor];
-    _collectionView.dataSource = self;
-    _collectionView.delegate = self;
+    [self load:@"https://newsapi.org/v2/top-headlines?country=ru&apiKey=07967613987b407298c77142b50151f9" withCompletion:^(id  _Nullable result) {
+        NSDictionary* json = result;
+        self.newsArray = [NSMutableArray new];
+        NSInteger num = 0;
 
-    
-    [self.view addSubview:self.collectionView];
-    
+        for (NSObject *i in [json valueForKey:@"articles"]){
+            //NSURL *urlLogo = [i valueForKey:@"urlToImage"];
+            News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
+            
+            [self.newsArray addObject:news];
+            
+            NSLog(@"%lu - %@", (unsigned long)self.newsArray.count, [self.newsArray[num] titleNews]);
+            num += 1;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
 }
 
-- (UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//    NewsCollectionViewCell* cell = [[NewsCollectionViewCell alloc] init];
-    NewsCollectionViewCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-    if (!cell){
-        cell = [[NewsCollectionViewCell alloc] init];
-    }
-    
 
-    cell.backgroundColor = UIColor.lightGrayColor;
-    cell.imageNews.image = [UIImage imageNamed:@"imageNews"];
-    cell.titleNews.text = @"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Praesent aliquam, justo convallis luctus rutrum, erat nulla fermentum diam, at nonummy quam ante ac quam.";
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.newsArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NewsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
+    if (!cell) {
+ 
+        cell = [[NewsTableViewCell alloc] init];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    NSURL *url = NewsImage([self.newsArray[indexPath.row]imageNews]);
+    [cell.imageNews yy_setImageWithURL:url options:YYWebImageOptionSetImageWithFadeAnimation];
+    cell.titleNews.text = [self.newsArray[indexPath.row] titleNews];
     return cell;
 }
 
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NewsDescriptionViewController* vc = [NewsDescriptionViewController new];
+    vc.desc_news_ST = [self.newsArray[indexPath.row]descNews];
+    vc.title_News_ST = [self.newsArray[indexPath.row]titleNews];
+    vc.image_News_ST = [self.newsArray[indexPath.row]imageNews];
+    [self.navigationController pushViewController:vc animated:YES];
 }
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(self.view.bounds.size.width, 150);
+-(void)load:(NSString*)urlString withCompletion:(void(^)(id _Nullable result))completion{
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionTask* task = [session dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        id serialization = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        completion(serialization);
+    }];
+    [task resume];
 }
-
-
-
-
 @end
