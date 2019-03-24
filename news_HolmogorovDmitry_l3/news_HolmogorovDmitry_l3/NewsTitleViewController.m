@@ -67,6 +67,9 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.businessArray addObject:news];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
     
     [self load:self.urlNews[1] withCompletion:^(id _Nullable result) {
@@ -76,6 +79,9 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.entertainment addObject:news];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
     
     [self load:self.urlNews[2] withCompletion:^(id _Nullable result) {
@@ -85,6 +91,9 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.sportsArray addObject:news];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
     
     [self load:self.urlNews[3] withCompletion:^(id _Nullable result) {
@@ -94,6 +103,9 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.scienceArray addObject:news];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
     
     [self load:self.urlNews[4] withCompletion:^(id _Nullable result) {
@@ -103,6 +115,9 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.healthArray addObject:news];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
     
     [self load:self.urlNews[5] withCompletion:^(id _Nullable result) {
@@ -112,8 +127,10 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.technologyArray addObject:news];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
-
 }
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (self.theme.selectedSegmentIndex) {
