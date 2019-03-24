@@ -44,22 +44,22 @@
     _tableView.rowHeight = 150;
     [_tableView setBackgroundColor:UIColor.whiteColor];
     [self.view addSubview:_tableView];
-    [self themeChange];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-    });
-    
-    
+    [self loadContent];
 }
 
 -(void)themeSelection{
     _theme =[[UISegmentedControl alloc] initWithItems:@[@"Бизнес", @"Развлечения", @"Спорт", @"Наука", @"Здоровье", @"Технологии"]];
     _theme.tintColor = [UIColor blackColor];
+    [_theme addTarget:self action:@selector(selectSegment) forControlEvents:UIControlEventValueChanged];
     _theme.selectedSegmentIndex = 5;
     self.navigationItem.titleView = _theme;
 }
--(void)themeChange{
-    
+-(void)selectSegment{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
+}
+-(void)loadContent{
     [self load:self.urlNews[0] withCompletion:^(id _Nullable result) {
         NSDictionary* json = result;
         self.businessArray = [NSMutableArray new];
@@ -67,9 +67,6 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.businessArray addObject:news];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
     }];
     
     [self load:self.urlNews[1] withCompletion:^(id _Nullable result) {
@@ -79,9 +76,6 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.entertainment addObject:news];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
     }];
     
     [self load:self.urlNews[2] withCompletion:^(id _Nullable result) {
@@ -91,9 +85,6 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.sportsArray addObject:news];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
     }];
     
     [self load:self.urlNews[3] withCompletion:^(id _Nullable result) {
@@ -103,9 +94,6 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.scienceArray addObject:news];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
     }];
     
     [self load:self.urlNews[4] withCompletion:^(id _Nullable result) {
@@ -115,9 +103,6 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.healthArray addObject:news];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
     }];
     
     [self load:self.urlNews[5] withCompletion:^(id _Nullable result) {
@@ -127,12 +112,8 @@
             News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
             [self.technologyArray addObject:news];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
     }];
-    
-    //[self.tableView reloadData];
+
 }
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (self.theme.selectedSegmentIndex) {
@@ -169,50 +150,32 @@
     }
     switch (self.theme.selectedSegmentIndex) {
         case 0:
-            //NSURL *url1 = NewsImage([self.businessArray[indexPath.row]imageNews]);
             [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.businessArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
             cell.titleNews.text = [self.businessArray[indexPath.row] titleNews];
-                [self.tableView reloadData];
             break;
         case 1:
-            //NSURL *url2 = NewsImage([self.entertainment[indexPath.row]imageNews]);
             [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.entertainment[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
             cell.titleNews.text = [self.entertainment[indexPath.row] titleNews];
-                [self.tableView reloadData];
             break;
         case 2:
-            //NSURL *url3 = NewsImage([self.sportsArray[indexPath.row]imageNews]);
             [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.sportsArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
             cell.titleNews.text = [self.sportsArray[indexPath.row] titleNews];
-            [self.tableView reloadData];
             break;
         case 3:
-            //NSURL *url4 = NewsImage([self.scienceArray[indexPath.row]imageNews]);
             [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.scienceArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
             cell.titleNews.text = [self.scienceArray[indexPath.row] titleNews];
-                [self.tableView reloadData];
-            
             break;
         case 4:
-            //NSURL* url5 = NewsImage([self.healthArray[indexPath.row]imageNews]);
             [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.healthArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
             cell.titleNews.text = [self.healthArray[indexPath.row] titleNews];
-                [self.tableView reloadData];
-            
             break;
         case 5:
-            //NSURL* url6 = NewsImage([self.technologyArray[indexPath.row]imageNews]);
             [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.technologyArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
             cell.titleNews.text = [self.technologyArray[indexPath.row] titleNews];
-                [self.tableView reloadData];
-            
             break;
         default:
             break;
     }
-//    [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.businessArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
-//    cell.titleNews.text = [self.businessArray[indexPath.row] titleNews];
-    
     return cell;
 }
 
@@ -252,7 +215,6 @@
         default:
             break;
     }
-    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -263,8 +225,6 @@
         id serialization = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         completion(serialization);
     }];
-    
-    
     [task resume];
 }
 @end
