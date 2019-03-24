@@ -16,12 +16,11 @@
         _imageNews = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 170, 140)];
         self.imageNews.layer.cornerRadius = 15;
         self.imageNews.clipsToBounds = YES;
+        self.imageNews.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:_imageNews];
         
         _titleNews = [[UILabel alloc] initWithFrame:CGRectMake(180, 5 , self.contentView.frame.size.width - 110, 140)];
-        //_titleNews.textAlignment = NSTextAlignmentLeft;
         [_titleNews setContentMode:UIViewContentModeTopLeft];
-        //[_titleNews adjustsFontSizeToFitWidth];
         _titleNews.numberOfLines = 7;
         [self.contentView addSubview:_titleNews];
         

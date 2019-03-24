@@ -10,7 +10,7 @@
 #import "NewsTitleViewController.h"
 #import "News.h"
 #import <YYWebImage/YYWebImage.h>
-#define News_Image(iata) [NSURL URLWithString:[NSString stringWithFormat:@"https://pics.avs.io/200/200/%@.png", iata]];
+#define News_Image(iata) [NSURL URLWithString: iata];
 
 
 @interface NewsDescriptionViewController ()
@@ -38,10 +38,13 @@
     _image_News = [[UIImageView alloc] initWithFrame:CGRectMake(0, 180, self.view.bounds.size.width, 300)];
     NSURL *url = News_Image(self.image_News_ST);
     [self.image_News yy_setImageWithURL:url options:YYWebImageOptionSetImageWithFadeAnimation];
+    self.image_News.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:_image_News];
     
-    _desc_news = [[UITextView alloc] initWithFrame:CGRectMake(0, 420, self.view.bounds.size.width, 1000)];
+    _desc_news = [[UITextView alloc] initWithFrame:CGRectMake(0, 420, self.view.bounds.size.width, 1500)];
     self.desc_news.text = self.desc_news_ST;
+    UIFont* font = [UIFont systemFontOfSize:20];
+    [self.desc_news setFont:font];
     [self.view addSubview:_desc_news];
 }
 /*
