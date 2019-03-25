@@ -9,11 +9,11 @@
 #import "News.h"
 
 @implementation News
--(instancetype)init{
+-(instancetype)initWithTitle:(NSString *)title image:(NSString *)image description:(NSString *)desc{
     if (self = [super init]){
-        _titleNews = @"title";
-        _descNews = @"description news";
-        _imageNews = @"url for news image";
+        _titleNews = title;
+        _descNews = desc;
+        _imageNews = image;
     
     }
     return self;

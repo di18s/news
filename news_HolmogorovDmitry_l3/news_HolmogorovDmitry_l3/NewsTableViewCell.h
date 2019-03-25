@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NewsTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) UIImageView* imageNews;
+@property (nonatomic, strong) UILabel* titleNews;
 @end
 
 NS_ASSUME_NONNULL_END

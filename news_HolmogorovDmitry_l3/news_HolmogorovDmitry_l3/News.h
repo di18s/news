@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString* imageNews;
 @property (nonatomic, strong) NSString* titleNews;
 @property (nonatomic, strong) NSString* descNews;
+-(instancetype)initWithTitle:(NSString*)title image:(NSString*)image description:(NSString*)desc;
 @end
 
 NS_ASSUME_NONNULL_END
