@@ -92,8 +92,8 @@
     
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction * action) {
-                                                              self.theme.selectedSegmentIndex = 0;
-                                                              [self.tableView reloadData];
+//                                                              self.theme.selectedSegmentIndex = 0;
+//                                                              [self.tableView reloadData];
                                                           }];
     
     [alert addAction:defaultAction];
