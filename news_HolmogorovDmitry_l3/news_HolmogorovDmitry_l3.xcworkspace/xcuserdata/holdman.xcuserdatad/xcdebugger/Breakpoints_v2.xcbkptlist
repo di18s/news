@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "news_HolmogorovDmitry_l3/NewsTitleViewController.m"
-            timestampString = "575133064.400076"
+            timestampString = "575202742.700068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -26,12 +26,123 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "news_HolmogorovDmitry_l3/NewsTitleViewController.m"
-            timestampString = "575133064.400543"
+            timestampString = "575202742.700659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "news_HolmogorovDmitry_l3/NewsTitleViewController.m"
+            timestampString = "575202742.701069"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-loadContent"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[NewsTitleViewController loadContent]_block_invoke.190"
+                  moduleName = "news_HolmogorovDmitry_l3"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdman/Downloads/news_homework/news_HolmogorovDmitry_l3/news_HolmogorovDmitry_l3/NewsTitleViewController.m"
+                  timestampString = "575202431.710373"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "1078">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[NewsTitleViewController loadContent]_block_invoke_2.193"
+                  moduleName = "news_HolmogorovDmitry_l3"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdman/Downloads/news_homework/news_HolmogorovDmitry_l3/news_HolmogorovDmitry_l3/NewsTitleViewController.m"
+                  timestampString = "575202431.712557"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.195"
+                  moduleName = "news_HolmogorovDmitry_l3"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/holdman/Downloads/news_homework/news_HolmogorovDmitry_l3/news_HolmogorovDmitry_l3/NewsTitleViewController.m"
+                  timestampString = "575202431.714779"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "165"
+                  endingLineNumber = "165"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "news_HolmogorovDmitry_l3/NewsTitleViewController.m"
+            timestampString = "575202742.701466"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "-loadContent"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "news_HolmogorovDmitry_l3/NewsTitleViewController.m"
+            timestampString = "575202742.7019351"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "news_HolmogorovDmitry_l3/NewsTitleViewController.m"
+            timestampString = "575202742.702352"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "-loadContent"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
