@@ -29,9 +29,12 @@
 }
 
 -(void)addUI{
-    _title_News = [[UILabel alloc] initWithFrame:CGRectMake(5, 80, self.view.bounds.size.width - 5, 100)];
+    _title_News = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, self.view.bounds.size.width, 100)];
     self.title_News.numberOfLines = 7;
-    [self.title_News setContentScaleFactor:2];
+    UIFont* fontTitle = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    self.title_News.font = fontTitle;
+    [self.title_News setTextAlignment:NSTextAlignmentCenter];
+    [self.title_News setBackgroundColor:UIColor.groupTableViewBackgroundColor];
     [self.title_News setText:self.title_News_ST];
     [self.view addSubview:_title_News];
     
@@ -41,7 +44,7 @@
     self.image_News.contentMode = UIViewContentModeScaleAspectFill;
     [self.view addSubview:_image_News];
     
-    _desc_news = [[UITextView alloc] initWithFrame:CGRectMake(0, 420, self.view.bounds.size.width, 1500)];
+    _desc_news = [[UITextView alloc] initWithFrame:CGRectMake(5, self.image_News.frame.size.height + 190, self.view.bounds.size.width - 5, 1500)];
     self.desc_news.text = self.desc_news_ST;
     UIFont* font = [UIFont systemFontOfSize:20];
     [self.desc_news setFont:font];

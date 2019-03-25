@@ -37,7 +37,7 @@
                      @"https:newsapi.org/v2/top-headlines?country=ru&category=sport&apiKey=07967613987b407298c77142b50151f9",
                      @"https:newsapi.org/v2/top-headlines?country=ru&category=science&apiKey=07967613987b407298c77142b50151f9",
                      @"https:newsapi.org/v2/top-headlines?country=ru&category=health&apiKey=07967613987b407298c77142b50151f9",
-                     @"https:newsapi.org/v2/top-headlines?country=ru&category=technology&apiKey=07967613987b407298c77142b50151f9",
+                     @"https://newsapi.org/v2/top-headlines?country=ru&category=technology&apiKey=07967613987b407298c77142b50151f9",
                      @"https://newsapi.org/v2/top-headlines?country=ru&apiKey=07967613987b407298c77142b50151f9"];
     
     [self loadContent];
