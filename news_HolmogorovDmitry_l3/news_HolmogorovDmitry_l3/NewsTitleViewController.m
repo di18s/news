@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray* technologyArray;
 @property (nonatomic, strong) NSMutableArray* healthArray;
 @property (nonatomic, strong) NSMutableArray* entertainment;
+@property (nonatomic, strong) NSMutableArray* newsArray;
 
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UISegmentedControl* theme;
@@ -36,7 +37,9 @@
                      @"https:newsapi.org/v2/top-headlines?country=ru&category=sport&apiKey=07967613987b407298c77142b50151f9",
                      @"https:newsapi.org/v2/top-headlines?country=ru&category=science&apiKey=07967613987b407298c77142b50151f9",
                      @"https:newsapi.org/v2/top-headlines?country=ru&category=health&apiKey=07967613987b407298c77142b50151f9",
-                     @"https:newsapi.org/v2/top-headlines?country=ru&category=technology&apiKey=07967613987b407298c77142b50151f9"];
+                     @"https:newsapi.org/v2/top-headlines?country=ru&category=technology&apiKey=07967613987b407298c77142b50151f9",
+                     @"https://newsapi.org/v2/top-headlines?country=ru&apiKey=07967613987b407298c77142b50151f9"];
+    
     [self loadContent];
     [self themeSelection];
     
@@ -48,35 +51,24 @@
     [self.view addSubview:_tableView];
     
 }
+
+//MARK: segment controll
 -(void)themeSelection{
     _theme =[[UISegmentedControl alloc] initWithItems:@[@"Бизнес", @"Развлечения", @"Спорт", @"Наука", @"Здоровье", @"Технологии"]];
     _theme.tintColor = [UIColor blackColor];
     [_theme addTarget:self action:@selector(selectSegment) forControlEvents:UIControlEventValueChanged];
-    _theme.selectedSegmentIndex = 1;
+    _theme.selectedSegmentIndex = 0;
     self.navigationItem.titleView = _theme;
 }
 
--(void)alert{
-    UIAlertController *alert = [UIAlertController new];
-    alert = [UIAlertController alertControllerWithTitle:@"Ой, что-то пошло не так.." message:@"Возможно в этой теме нет новостей" preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler:^(UIAlertAction * action) {
-                                                              self.theme.selectedSegmentIndex = 0;
-                                                              [self.tableView reloadData];
-                                                          }];
-    
-    [alert addAction:defaultAction];
-    [self presentViewController:alert animated:YES completion: nil];
-    
-}
+
 -(void)selectSegment{
     if (self.theme.selectedSegmentIndex == 0 && self.businessArray.count == 0) {
         [self alert];
         self.theme.selectedSegmentIndex = 1;
     } else if (self.theme.selectedSegmentIndex == 1 && self.entertainment.count == 0){
         [self alert];
-        self.theme.selectedSegmentIndex = 0;
+        self.theme.selectedSegmentIndex = 2;
     } else if (self.theme.selectedSegmentIndex == 2 && self.sportsArray.count == 0){
         [self alert];
         self.theme.selectedSegmentIndex = 3;
@@ -94,6 +86,20 @@
         [self.tableView reloadData];
     });
 }
+-(void)alert{
+    UIAlertController *alert = [UIAlertController new];
+    alert = [UIAlertController alertControllerWithTitle:@"Ой, что-то пошло не так.." message:@"Возможно в этой теме нет новостей" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                              self.theme.selectedSegmentIndex = 0;
+                                                              [self.tableView reloadData];
+                                                          }];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion: nil];
+}
+
 -(void)loadContent{
     [self load:self.urlNews[0] withCompletion:^(id _Nullable result) {
         NSDictionary* json = result;
@@ -166,7 +172,18 @@
             [self.tableView reloadData];
         });
     }];
+    
+    [self load:self.urlNews[6] withCompletion:^(id _Nullable result) {
+        NSDictionary* json = result;
+        self.newsArray = [NSMutableArray new];
+        for (NSObject *i in [json valueForKey:@"articles"]){
+            News* news = [[News alloc] initWithTitle:[i valueForKey:@"title"] image:[i valueForKey:@"urlToImage"] description:[i valueForKey:@"description"]];
+            [self.newsArray addObject:news];
+        }
+    }];
 }
+
+//MARK: - TVCdataSource
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (self.theme.selectedSegmentIndex) {
         case 0:
@@ -179,33 +196,32 @@
         case 1:
             if (self.entertainment.count == 0) {
                 [self alert];
-                self.theme.selectedSegmentIndex = 0;
-                return self.businessArray.count;
-            } else {
-                return self.entertainment.count;
+                self.theme.selectedSegmentIndex = 2;
+                return self.sportsArray.count;
             }
+            return self.entertainment.count;
             break;
         case 2:
             if (self.sportsArray.count == 0) {
                 [self alert];
-                self.theme.selectedSegmentIndex = 0;
-                return self.businessArray.count;
+                self.theme.selectedSegmentIndex = 3;
+                return self.scienceArray.count;
             } else {
                 return self.sportsArray.count;
             }
             break;
         case 3:
             if (self.scienceArray.count == 0) {
-                self.theme.selectedSegmentIndex = 0;
-                return self.businessArray.count;
+                self.theme.selectedSegmentIndex = 4;
+                return self.healthArray.count;
             } else {
                 return self.scienceArray.count;
             }
             break;
         case 4:
             if (self.healthArray.count == 0) {
-                self.theme.selectedSegmentIndex = 0;
-                return self.businessArray.count;
+                self.theme.selectedSegmentIndex = 5;
+                return self.technologyArray.count;
             } else {
                 return self.healthArray.count;
             }
@@ -219,7 +235,7 @@
             }
             break;
         default:
-            return self.businessArray.count;
+            return self.newsArray.count;
             break;
     }
 }
@@ -227,18 +243,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier"];
     if (!cell) {
- 
         cell = [[NewsTableViewCell alloc] init];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     switch (self.theme.selectedSegmentIndex) {
         case 0:
-//            if (self.businessArray.count == 0) {
-//                self.theme.selectedSegmentIndex = 1;
-//            } else {
-                [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.businessArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
-                cell.titleNews.text = [self.businessArray[indexPath.row] titleNews];
-            //}
+            [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.businessArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
+            cell.titleNews.text = [self.businessArray[indexPath.row] titleNews];
             break;
         case 1:
             [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.entertainment[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
@@ -257,19 +268,17 @@
             cell.titleNews.text = [self.healthArray[indexPath.row] titleNews];
             break;
         case 5:
-//            if (self.technologyArray.count == 0) {
-//                self.theme.selectedSegmentIndex = 4;
-//            } else {
-                [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.technologyArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
-                cell.titleNews.text = [self.technologyArray[indexPath.row] titleNews];
-//            }
+            [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.technologyArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
+            cell.titleNews.text = [self.technologyArray[indexPath.row] titleNews];
             break;
         default:
+            [cell.imageNews yy_setImageWithURL:[NSURL URLWithString:[self.newsArray[indexPath.row]imageNews]] options:YYWebImageOptionSetImageWithFadeAnimation];
+            cell.titleNews.text = [self.newsArray[indexPath.row] titleNews];
             break;
     }
     return cell;
 }
-
+//MARK: - TVCdelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NewsDescriptionViewController* vc = [NewsDescriptionViewController new];
     switch (self.theme.selectedSegmentIndex) {
@@ -304,11 +313,14 @@
             vc.image_News_ST = [self.technologyArray[indexPath.row]imageNews];
             break;
         default:
+            vc.desc_news_ST = [self.newsArray[indexPath.row]descNews];
+            vc.title_News_ST = [self.newsArray[indexPath.row]titleNews];
+            vc.image_News_ST = [self.newsArray[indexPath.row]imageNews];
             break;
     }
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+//MARK: - DataManager
 -(void)load:(NSString*)urlString withCompletion:(void(^)(id _Nullable result))completion{
     NSURLSession* session = [NSURLSession sharedSession];
     
